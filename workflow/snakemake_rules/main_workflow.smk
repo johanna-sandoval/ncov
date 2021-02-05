@@ -271,6 +271,18 @@ rule mask:
             --output {output.alignment} 2>&1 | tee {log}
         """
 
+rule index:
+    input:
+        metadata = config["sequences"],
+    output:
+        "results/sequence_index.tsv"
+    log:
+        "logs/index.txt"
+    shell:
+        """
+        augur index --sequences {input.sequences} --output {output}  2>&1 | tee {log}
+        """
+
 rule filter:
     message:
         """
@@ -279,6 +291,7 @@ rule filter:
         """
     input:
         sequences = "results/masked.fasta",
+        index = rules.index.output,
         metadata = config["metadata"],
         include = config["files"]["include"],
         exclude = "results/combined_exclude.txt"
@@ -298,6 +311,7 @@ rule filter:
         augur filter \
             --sequences {input.sequences} \
             --metadata {input.metadata} \
+            --index {input.index} \
             --include {input.include} \
             --max-date {params.date} \
             --min-date {params.min_date} \
