@@ -273,7 +273,7 @@ rule mask:
 
 rule index:
     input:
-        metadata = config["sequences"],
+        sequences = config["sequences"],
     output:
         "results/sequence_index.tsv"
     log:
