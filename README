@@ -1,0 +1,13 @@
+#Consensus sequences extracted from Beluga, using this code:
+
+# prepare data
+cp CleanPlex_SARSCoV2_pgx_2021-02and_2021-03_consensus.fasta data/example_sequences.fasta
+cp CleanPlex_SARSCoV2_pgx_2021-02and_2021-03_consensus_metadata_update.tsv data/example_metadata.tsv
+
+
+conda activate nextstrain
+
+snakemake --cores 4 --profile ./my_profiles/getting_started
+snakemake --cores 4 --profile ./my_profiles/example
+auspice view
+

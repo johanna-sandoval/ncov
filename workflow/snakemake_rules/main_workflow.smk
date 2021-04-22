@@ -661,15 +661,18 @@ rule traits:
         sampling_bias_correction = _get_sampling_bias_correction_for_wildcards
     conda: config["conda_environment"]
     shell:
-        """
-        augur traits \
-            --tree {input.tree} \
-            --metadata {input.metadata} \
-            --output {output.node_data} \
-            --columns {params.columns} \
-            --confidence \
-            --sampling-bias-correction {params.sampling_bias_correction} 2>&1 | tee {log}
-        """
+#        """
+#        augur traits \
+#            --tree {input.tree} \
+#            --metadata {input.metadata} \
+#            --output {output.node_data} \
+#            --columns {params.columns} \
+#            --confidence \
+#            --sampling-bias-correction {params.sampling_bias_correction} 2>&1 | tee {log}
+#        """
+         """
+            echo \"HI\"  
+         """
 
 def _get_clade_files(wildcards):
     if "subclades" in config["builds"][wildcards.build_name]:
@@ -893,8 +896,9 @@ def _get_node_data_by_wildcards(wildcards):
         rules.translate.output.node_data,
         rules.rename_subclades.output.clade_data,
         rules.clades.output.clade_data,
-        rules.recency.output.node_data,
-        rules.traits.output.node_data
+        rules.recency.output.node_data
+#,
+#        rules.traits.output.node_data
     ]
 
     # Convert input files from wildcard strings to real file names.

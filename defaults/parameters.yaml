@@ -85,7 +85,7 @@ tree:
 
 # TreeTime settings
 refine:
-  root: "Wuhan/Hu-1/2019 Wuhan/WH01/2019" #EPI_ISL_402125  EPI_ISL_406798
+  root: "CA/PQ_PGX001042_1_2_S49_L001/2020" #EPI_ISL_402125  EPI_ISL_406798
   clock_rate: 0.0008
   clock_std_dev: 0.0004
   coalescent: "skyline"
@@ -148,12 +148,12 @@ subsampling:
     # Focal samples for region
     region:
       group_by: "division year month"
-      seq_per_group: 48
+      seq_per_group: 330
       exclude: "--exclude-where 'region!={region}'"
     # Contextual samples for region from the rest of the world
     global:
       group_by: "country year month"
-      seq_per_group: 4
+      seq_per_group: 300
       exclude: "--exclude-where 'region={region}'"
       priorities:
         type: "proximity"
@@ -163,7 +163,7 @@ subsampling:
   region_global:
     global:
       group_by: "country year month"
-      seq_per_group: 20
+      seq_per_group: 330
 
   # Custom subsampling logic for regions like Europe where grouping by country
   # is the smallest resolution required.
@@ -171,7 +171,7 @@ subsampling:
     # Focal samples for region
     region:
       group_by: "country year month"
-      seq_per_group: 64
+      seq_per_group: 300
       exclude: "--exclude-where 'region!={region}'"
     # Contextual samples for region from the rest of the world
     global:
@@ -187,12 +187,12 @@ subsampling:
     # Focal samples for country
     country:
       group_by: "division year month"
-      seq_per_group: 200
+      seq_per_group: 300
       exclude: "--exclude-where 'country!={country}'"
     # Contextual samples from country's region
     region:
       group_by: "country year month"
-      seq_per_group: 20
+      seq_per_group: 300
       exclude: "--exclude-where 'country={country}' 'region!={region}'"
       priorities:
         type: "proximity"
@@ -201,7 +201,7 @@ subsampling:
     # excluding the current region to avoid resampling.
     global:
       group_by: "country year month"
-      seq_per_group: 10
+      seq_per_group: 300
       exclude: "--exclude-where 'region={region}'"
       priorities:
         type: "proximity"
@@ -217,7 +217,7 @@ subsampling:
     # Contextual samples from division's country
     country:
       group_by: "division year month"
-      seq_per_group: 20
+      seq_per_group: 300
       exclude: "--exclude-where 'region!={region}' 'country!={country}' 'division={division}'"
       priorities:
         type: "proximity"
@@ -250,7 +250,7 @@ subsampling:
     # Samples that are genetically related to the focal samples
     related:
       group_by: "country year month"
-      seq_per_group: 20
+      seq_per_group: 300
       exclude: "--exclude-where 'location={location}'"
       priorities:
         type: "proximity"
@@ -258,5 +258,5 @@ subsampling:
     # Contextual samples from the rest of the world
     contextual:
       group_by: "country year month"
-      seq_per_group: 10
+      seq_per_group: 300
       exclude: "--exclude-where 'location={location}'"
